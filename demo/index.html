@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>幸运抽奖插件示例</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .luck-box{width: 600px;height: 600px;border-top: 1px solid #ddd;border-left: 1px solid #ddd;margin: 0 auto;font-size: 36px;color: #333;font-weight: bold;line-height: 180px}
+        .luck-item,.start-item{text-align: center;position: relative;width: 199px;height: 199px;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;float: left;}
+        .luck-item.active i{display: block}
+        .luck-item i{display: none;position: absolute;left: 0;right: 0;bottom: 0;top: 0;border: 5px solid indianred}
+        .start-item{cursor: pointer;background-color: #667d84;}
+        .start-item:hover{background-color: cadetblue;}
+    </style>
+</head>
+<body>
+    <ul class="luck-box" id="luck-box">
+        <li class="luck-item luck-item-1 active" data-id="1-0"><i></i>1</li>
+        <li class="luck-item luck-item-2" data-id="2-1"><i></i>2</li>
+        <li class="luck-item luck-item-3" data-id="3-2"><i></i>3</li>
+        <li class="luck-item luck-item-8" data-id="8-7"><i></i>8</li>
+        <li class="start-item">开始</li>
+        <li class="luck-item luck-item-4" data-id="4-3"><i></i>4</li>
+        <li class="luck-item luck-item-7" data-id="7-6"><i></i>7</li>
+        <li class="luck-item luck-item-6" data-id="6-5"><i></i>6</li>
+        <li class="luck-item luck-item-5" data-id="5-4"><i></i>5</li>
+    </ul>
+</body>
+<script src="../lib/Ajuan-1.0.js"></script>
+<script src="../src/ajuanLuckDraw-1.0.js"></script>
+<script>
+    var luckArr = _a('#luck-box').AjuanLuckDraw();
+    _a(document.body).on('click', function (event) {
+        var target = _a.target(event);
+        if(target.className == 'start-item'){
+            var index = Math.floor(Math.random()*8);
+            console.log('格子是：' + (index + 1));
+            luckArr[0].start(index);
+            return;
+        }
+    });
+</script>
+</html>
